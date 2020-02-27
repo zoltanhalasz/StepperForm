@@ -1,0 +1,76 @@
+.container {
+    font-family: Calibri;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    width: 400px;
+}
+
+.progress {
+    display: flex;
+    flex-direction: row;    
+    padding: 5px;
+    border: 1px black;      
+    justify-content: space-between;
+}
+
+.selectedprogress {
+    font-size: 30px;
+    font-weight: 900;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px blue;
+    border-radius: 20px;
+    background-color: lightskyblue;
+}
+
+.step {
+    width: 380px;
+}
+.inputfields {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+}
+
+button {
+    background-color: cornflowerblue;
+    padding: 5px;
+    border: 1px white;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+}
+
+.submitbtn {
+    background-color: darkcyan;
+    padding: 5px;
+    border: 1px white;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+
+}
+
+.input {
+    margin-bottom: 10px;
+    border-radius: 3px;
+    width: 100%;
+}
+
+input {
+    font-size: 24px;
+}
+
+#finalmessage {
+    font-size: 20px;
+}
+
+#error {
+    color: darkred;    
+    font-size: 20px;
+    padding: 10px;
+}

@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="progress">
+         
+                <div id="1" class="selectedprogress">
+                1
+                </div>
+        
+         
+                <div id="2">
+                2    
+                </div>
+         
+                <div id="3">
+                3    
+                </div>
+         
+                <div id="4">
+                4    
+                </div>
+            </div>
+            <div class="inputfields">
+                <div id="step1" class="step">
+                    <input type="email" placeholder="email" name="email" id="input1" class="input">
+                    <div class="buttons">
+                        <button onclick="next(1)">Next</button>
+                    </div>                    
+                </div>
+                <div id="step2" class="step"> 
+                    <input type="password" placeholder="password" name="password" id="input2" class="input">
+                    <div class="buttons">
+                        <button onclick ="previous(2)" >Previous</button>
+                        <button onclick ="next(2)">Next</button>
+                    </div>                    
+                </div>
+                <div id="step3" class="step">
+                    <input type="date" placeholder="birthdate" name="birtdate" id="input3" class="input">
+                    <div class="buttons">
+                        <button onclick ="previous(3)">Previous</button>
+                        <button onclick ="next(3)">Next</button>
+                    </div>                    
+                </div>
+                <div id="step4" class="step">
+                    <div class="input" id = "finalmessage">
+                        You can submit the final form now.
+                    </div>                    
+                    <div class="buttons">
+                        <button onclick ="previous(4)">Previous</button>
+                        <button onclick="finalsubmit()" class="submitbtn">Submit</button>
+                    </div>                    
+                </div>
+            </div>
+            <div id="error">                
+            </div>
+        </div>
+        <script>
+            function hideall(){
+                document.getElementById("step1").style.display='none';
+                document.getElementById("step2").style.display='none';
+                document.getElementById("step3").style.display='none';
+                document.getElementById("step4").style.display='none';
+            }
+
+            function unboldall(){
+                document.getElementById("1").className ='';                
+                document.getElementById("2").className='';                
+                document.getElementById("3").className='';                
+                document.getElementById("4").className='';                
+            }
+
+            function showProgress(nr){
+                console.log(nr);
+                unboldall();
+                document.getElementById(nr).className='selectedprogress';                
+            }
+
+            function initialize(){
+                hideall();
+                document.getElementById("step1").style.display='block';                
+                showProgress(1);
+                document.getElementById("error").innerText = "";
+            }
+
+            function next(nr){
+                console.log('next',nr);
+                const nextindex = nr+1;
+                hideall();
+                document.getElementById(`step${nextindex}`).style.display='block';
+                showProgress(nextindex);
+                document.getElementById("error").innerText = "";
+            }
+
+            function previous(nr){
+                console.log('previous',nr);
+                const nextindex = nr-1;
+                hideall();
+                document.getElementById(`step${nextindex}`).style.display='block';
+                showProgress(nextindex);
+                document.getElementById("error").innerText = "";
+            }
+
+            function finalsubmit(){
+                const myInput = [];                
+                myInput.push({'value': document.getElementById("input1")?.value, "from": "input1"});
+                myInput.push({'value': document.getElementById("input2")?.value, "from": "input2"});
+                myInput.push({'value': document.getElementById("input3")?.value, "from": "input3"});             
+                console.log(myInput);
+                let errormessage = '';
+                for (const element of myInput)
+                {
+                    if (!element.value) {
+                        errormessage+= "Missing value " + element.from +"\n";
+                    }
+                }
+                //console.log(errormessage);
+                if (errormessage && errormessage!=="") updateErrorMessage(errormessage);
+            }
+
+            function updateErrorMessage(errormessage){
+               // console.log('updateErrorMessage',errormessage);
+               // document.getElementById("error").innerHtml=`<p>${errormessage}</p>`;
+                console.log(document.getElementById("error").innerHTML);
+                document.getElementById("error").innerText = errormessage;
+            }
+
+            window.onload = () =>
+            {
+                initialize();
+            }            
+        </script>
+    </body>
+</html>
